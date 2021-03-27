@@ -169,7 +169,7 @@ html {
 }
 
 .guide-slot_card {
-  background: #fafafa;
+  background: #f5f5f5;
   /*border: 1px solid var(--border);*/
   box-shadow: 1px 1px 1px rgba(43, 59, 93, 0.3);
   border-radius: 0.8rem;
@@ -221,7 +221,7 @@ html {
   display: flex;
   flex-wrap: wrap;
   & .tag {
-    padding: 0.35rem 0.8rem;
+    padding: 0.25rem 0.8rem;
     margin: 0.5rem;
     font-weight: 500;
     border-radius: 0.5rem;

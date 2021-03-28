@@ -5,8 +5,9 @@
       <p>Próximos streamings</p>
     </section>
     <hr class="divider" />
+    <button @click.prevent="scrollTo('slot-' + ahora)">ahora</button>
 
-    <div class="schedule-container">
+    <div id="schedule-container" class="schedule-container">
       <div class="schedule-stage__wrapper">
         <section
           v-for="evento in eventosByDay"
@@ -17,8 +18,23 @@
             <h3>{{ evento.dia | weekDay }}</h3>
           </div>
           <div class="schedule-stage_guide-container">
-            <div v-for="(hora, h) in horas" :key="h" class="guide-slot">
-              <p class="time-slot" :data-time="hora | hora">
+            <div
+              v-for="(hora, h) in horas"
+              :key="h"
+              class="guide-slot"
+              :class="[
+                `slot-${h}`,
+                {
+                  disabled: moment(hoy).isAfter(
+                    moment(
+                      evento.dia + ' ' + hora.format('HH:mm'),
+                      'YYYY-MM-DD HH:mm'
+                    )
+                  ),
+                },
+              ]"
+            >
+              <p class="time-slot">
                 {{ hora | hora }} - {{ horas[(h + 1) % 24] | hora }}
               </p>
               <div
@@ -30,6 +46,9 @@
                 class="guide-slot_card"
               >
                 <h4>{{ item.title }}</h4>
+                <span class="hora"
+                  >{{ item.start | hora }} - {{ item.end | hora }}</span
+                >
                 <figure class="author-wrapper">
                   <picture>
                     <img :src="item.avatar" alt="" />
@@ -137,7 +156,7 @@ export default {
       return moment(new Date(date)).format('dddd')
     },
     hora(datetime) {
-      return moment(datetime).format('H:mm')
+      return moment(datetime).local().format('H:mm')
     },
   },
   data() {
@@ -151,8 +170,8 @@ export default {
           title: 'CSR, SSR, SSG, ISR and OMG.WTF?BBQ!',
           author: 'Ahmad Awais',
           avatar: 'https://randomuser.me/api/portraits/lego/6.jpg',
-          start: 'Fri Mar 26 2021 08:00:31 GMT+0100',
-          end: 'Fri Mar 26 2021 09:00:31 GMT+0100',
+          start: 'Sun Mar 28 2021 08:00:31 GMT+0200',
+          end: 'Sun Mar 28 2021 09:00:31 GMT+0200',
         },
         {
           id: 2,
@@ -160,8 +179,8 @@ export default {
           title: 'Título 2',
           author: 'Josh Laudrup',
           avatar: 'https://randomuser.me/api/portraits/lego/4.jpg',
-          start: 'Fri Mar 26 2021 08:00:31 GMT+0100',
-          end: 'Fri Mar 26 2021 09:00:31 GMT+0100',
+          start: 'Sun Mar 28 2021 08:00:31 GMT+0200',
+          end: 'Sun Mar 28 2021 09:00:31 GMT+0200',
         },
         {
           id: 3,
@@ -169,8 +188,8 @@ export default {
           title: 'Título 3',
           author: 'Tom Berenger',
           avatar: 'https://randomuser.me/api/portraits/lego/3.jpg',
-          start: 'Fri Mar 26 2021 09:00:31 GMT+0100',
-          end: 'Fri Mar 26 2021 10:00:31 GMT+0100',
+          start: 'Sun Mar 28 2021 09:00:31 GMT+0200',
+          end: 'Sun Mar 28 2021 10:00:31 GMT+0200',
         },
         {
           id: 4,
@@ -178,8 +197,8 @@ export default {
           title: 'Equipos y Psicología',
           author: 'Benito Floro',
           avatar: 'https://randomuser.me/api/portraits/lego/6.jpg',
-          start: 'Fri Mar 26 2021 10:00:31 GMT+0100',
-          end: 'Fri Mar 26 2021 11:00:31 GMT+0100',
+          start: 'Sun Mar 28 2021 10:00:31 GMT+0200',
+          end: 'Sun Mar 28 2021 11:00:31 GMT+0200',
         },
         {
           id: 5,
@@ -187,8 +206,17 @@ export default {
           title: 'Conspiraciones de conscursantes',
           author: 'Jordi Hurtado',
           avatar: 'https://randomuser.me/api/portraits/lego/1.jpg',
-          start: 'Fri Mar 26 2021 08:00:31 GMT+0100',
-          end: 'Fri Mar 26 2021 09:00:31 GMT+0100',
+          start: 'Sun Mar 28 2021 18:00:31 GMT+0200',
+          end: 'Sun Mar 28 2021 19:00:31 GMT+0200',
+        },
+        {
+          id: 5,
+          catId: 1,
+          title: 'España - Georgia',
+          author: 'Tomas Guasch',
+          avatar: 'https://randomuser.me/api/portraits/lego/3.jpg',
+          start: 'Mon Mar 29 2021 18:00:31 GMT+0200',
+          end: 'Mon Mar 29 2021 19:00:31 GMT+0200',
         },
         {
           id: 4,
@@ -196,8 +224,8 @@ export default {
           title: 'Equipos y Psicología',
           author: 'Benito Floro',
           avatar: 'https://randomuser.me/api/portraits/lego/6.jpg',
-          start: 'Sat Mar 27 2021 10:00:31 GMT+0100',
-          end: 'Sat Mar 27 2021 11:00:31 GMT+0100',
+          start: 'Tue Mar 30 2021 10:00:31 GMT+0200',
+          end: 'Tue Mar 30 2021 11:00:31 GMT+0200',
         },
         {
           id: 5,
@@ -205,28 +233,38 @@ export default {
           title: 'Conspiraciones de conscursantes',
           author: 'Jordi Hurtado',
           avatar: 'https://randomuser.me/api/portraits/lego/1.jpg',
-          start: 'Sat Mar 27 2021 08:00:31 GMT+0100',
-          end: 'Sat Mar 27 2021 09:00:31 GMT+0100',
+          start: 'Tue Mar 30 2021 17:00:31 GMT+0200',
+          end: 'Tue Mar 30 2021 18:15:31 GMT+0200',
         },
       ],
     }
   },
   computed: {
+    ahora() {
+      const h = new Date().getHours()
+      // this.scrollTo('.slot-' + h)
+      return h
+    },
     eventosByDay() {
-      const items = this.items.reduce((acum, item) => {
-        const d = moment(new Date(item.start)).format('YYYY-MM-DD')
-        const found = acum.find((x) => x.dia === d)
+      const items = this.items
+        .filter(
+          (x) =>
+            moment(x.start).format('YYYYMMDD') >=
+            moment(this.hoy).format('YYYYMMDD')
+        )
+        .reduce((acum, item) => {
+          const d = moment(new Date(item.start)).format('YYYY-MM-DD')
+          const found = acum.find((x) => x.dia === d)
 
-        if (!found) acum.push({ dia: d, eventos: [item] })
-        else found.eventos.push(item)
-        return acum
-      }, [])
+          if (!found) acum.push({ dia: d, eventos: [item] })
+          else found.eventos.push(item)
+          return acum
+        }, [])
       return items
     },
   },
   mounted() {
-    moment.locale('es-ES')
-    // this.parseItems()
+    moment.locale(['es', 'en'])
     this.horas = Array.from(
       {
         length: 24,
@@ -241,34 +279,41 @@ export default {
           seconds: 0,
         })
     )
-    // this.scrollTo('[data-time]=' + new Date().getHours())
-    if (
-      this.$el.querySelector('[data-time="' + new Date().getHours() + ':00"]')
-    )
-      this.$el
-        .querySelector('[data-time="' + new Date().getHours() + ':00"]')
-        .scrollIntoView()
+    this.ini()
+    setTimeout(() => {
+      this.scrollTo('slot-' + this.ahora)
+    })
   },
   methods: {
     eventosByHour(eventos, hora) {
       if (!eventos) return []
       hora = '0' + hora
       hora = hora.substr(-5)
-      const h = moment(hora, 'HH:mm')
-      const h1 = moment(hora, 'HH:mm').add(1, 'h')
+      const h = moment(hora, 'HH:mm').local()
+      const h1 = moment(hora, 'HH:mm').local().add(1, 'h')
       return eventos.filter(
         (x) =>
-          (moment(x.start).format('HH:mm') >= h.format('HH:mm') &&
-            h1.format('HH:mm') > moment(x.start).format('HH:mm')) ||
-          (moment(x.end).format('HH:mm') < h1.format('HH:mm') &&
-            h.format('HH:mm') < moment(x.end).format('HH:mm'))
+          (moment(x.start).local().format('HH:mm') >= h.format('HH:mm') &&
+            h1.format('HH:mm') > moment(x.start).local().format('HH:mm')) ||
+          (moment(x.end).local().format('HH:mm') < h1.format('HH:mm') &&
+            h.format('HH:mm') < moment(x.end).local().format('HH:mm'))
       )
     },
     moment(date) {
       return moment(date)
     },
     scrollTo(param) {
-      const items = document.container.getAttribute(param)
+      const items = document.getElementsByClassName(param)
+
+      if (items.length)
+        items[0].scrollIntoView({
+          // block: 'start',
+          inline: 'center',
+          behavior: 'smooth',
+        })
+    },
+    scrollToX(param) {
+      const items = document.getElementsByClassName(param)
       const visible = [...items].filter((el) => {
         // jQuery-like :visible selector
         return !!(
@@ -285,6 +330,49 @@ export default {
         })
       }
     },
+    ini() {
+      const ele = document.getElementById('schedule-container')
+      ele.style.cursor = 'grab'
+
+      let pos = { top: 0, left: 0, x: 0, y: 0 }
+
+      const mouseDownHandler = function (e) {
+        ele.style.cursor = 'grabbing'
+        ele.style.userSelect = 'none'
+
+        pos = {
+          left: ele.scrollLeft,
+          top: ele.scrollTop,
+          // Get the current mouse position
+          x: e.clientX,
+          y: e.clientY,
+        }
+
+        document.addEventListener('mousemove', mouseMoveHandler)
+        document.addEventListener('mouseup', mouseUpHandler)
+      }
+
+      const mouseMoveHandler = function (e) {
+        // How far the mouse has been moved
+        const dx = e.clientX - pos.x
+        const dy = e.clientY - pos.y
+
+        // Scroll the element
+        ele.scrollTop = pos.top - dy
+        ele.scrollLeft = pos.left - dx
+      }
+
+      const mouseUpHandler = function () {
+        ele.style.cursor = 'grab'
+        ele.style.removeProperty('user-select')
+
+        document.removeEventListener('mousemove', mouseMoveHandler)
+        document.removeEventListener('mouseup', mouseUpHandler)
+      }
+
+      // Attach the handler
+      ele.addEventListener('mousedown', mouseDownHandler)
+    },
   },
 }
 </script>
@@ -299,27 +387,5 @@ export default {
   align-items: center;
   text-align: center;
   */
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
 }
 </style>

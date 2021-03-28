@@ -94,6 +94,7 @@ html {
 }
 
 .schedule-container {
+  cursor: grab;
   overflow: auto;
 }
 
@@ -142,6 +143,7 @@ html {
 .schedule-stage__title {
   position: sticky;
   left: 0;
+  width: 200px;
   padding-right: 3rem;
   height: 100%;
   padding-left: 1rem;
@@ -165,6 +167,12 @@ html {
     font-weight: 700;
     color: #666;
     text-align: center;
+  }
+  &.disabled {
+    background: rgba(250, 250, 250, 0.5);
+    & .time-slot {
+      opacity: 0.5;
+    }
   }
 }
 
@@ -192,6 +200,10 @@ html {
   & > h4 {
     margin-right: 1rem;
     font-size: 0.9rem;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -200,7 +212,7 @@ html {
   align-items: center;
   margin-top: 0.5rem;
   & figcaption {
-    font-size: 1rem;
+    font-size: 0.875rem;
   }
   & > picture {
     display: inline-block;

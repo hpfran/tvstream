@@ -146,8 +146,8 @@ html {
   width: 200px;
   padding-right: 3rem;
   height: 100%;
-  padding-left: 1rem;
-  background: linear-gradient(to right, #efefef 25%, hsla(0, 0%, 0%, 0));
+  padding-left: 0.25rem;
+  background: linear-gradient(90deg, #efefef 0%, rgba(0, 0, 0, 0) 25%);
   & > h3 {
     font-weight: 900;
   }
@@ -229,6 +229,13 @@ html {
     }
   }
 }
+@media only screen and (min-width: 600px) {
+  .schedule-stage__title {
+    padding-left: 1rem;
+    background: linear-gradient(to right, #efefef 5%, rgba(0, 0, 0, 0));
+  }
+}
+
 .categorias-tags {
   display: flex;
   flex-wrap: wrap;

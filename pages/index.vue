@@ -57,83 +57,6 @@
                 </figure>
               </div>
             </div>
-            <!--
-            <div class="guide-slot">
-              <p>9:00am - 10:00am</p>
-              <div class="guide-slot_card">
-                <h4>Changing Lanes with Lyft</h4>
-                <figure class="author-wrapper">
-                  <picture>
-                    <img
-                      src="https://randomuser.me/api/portraits/lego/2.jpg"
-                      alt=""
-                    />
-                  </picture>
-                  <figcaption>Joshua Callender</figcaption>
-                </figure>
-              </div>
-              <div class="guide-slot_card">
-                <h4>Magic Authentication - The Missing LEGO Piece</h4>
-                <figure class="author-wrapper">
-                  <picture>
-                    <img
-                      src="https://randomuser.me/api/portraits/lego/1.jpg"
-                      alt=""
-                    />
-                  </picture>
-                  <figcaption>Sean Li</figcaption>
-                </figure>
-              </div>
-            </div>
-            <div class="guide-slot">
-              <p>10:00am - 11:00am</p>
-              <div class="guide-slot_card">
-                <h4>
-                  Introducing: Edge Slice Rerendering. Performant A/B Testing,
-                  Personalization, and more.
-                </h4>
-                <figure class="author-wrapper">
-                  <picture>
-                    <img
-                      src="https://randomuser.me/api/portraits/lego/3.jpg"
-                      alt=""
-                    />
-                  </picture>
-                  <figcaption>Jay Phelps</figcaption>
-                </figure>
-              </div>
-            </div>
-            <div class="guide-slot">
-              <p>11:00am - 12:00pm</p>
-              <div class="guide-slot_card selected">
-                <h4>Everything Is a CMS</h4>
-                <figure class="author-wrapper">
-                  <picture>
-                    <img
-                      src="https://randomuser.me/api/portraits/lego/5.jpg"
-                      alt=""
-                    />
-                  </picture>
-                  <figcaption>Sean C Davis</figcaption>
-                </figure>
-              </div>
-            </div>
-            <div class="guide-slot">
-              <p>12:00pm - 1:00pm</p>
-              <div class="guide-slot_card">
-                <h4>Responsive Rendering with Next.js</h4>
-                <figure class="author-wrapper">
-                  <picture>
-                    <img
-                      src="https://randomuser.me/api/portraits/lego/8.jpg"
-                      alt=""
-                    />
-                  </picture>
-                  <figcaption>Armando Gonzalez</figcaption>
-                </figure>
-              </div>
-            </div>
-            -->
           </div>
         </section>
 
@@ -149,6 +72,8 @@ import moment from 'moment'
 Date.prototype.addDays = function (d) {
   return new Date(this.valueOf() + 864e5 * d)
 }
+
+const now = new Date()
 
 export default {
   filters: {
@@ -170,8 +95,8 @@ export default {
           title: 'CSR, SSR, SSG, ISR and OMG.WTF?BBQ!',
           author: 'Ahmad Awais',
           avatar: 'https://randomuser.me/api/portraits/lego/6.jpg',
-          start: 'Sun Mar 28 2021 08:00:31 GMT+0200',
-          end: 'Sun Mar 28 2021 09:00:31 GMT+0200',
+          start: new Date(2021, now.getMonth(), now.getDate(), 10, 0),
+          end: new Date(2021, now.getMonth(), now.getDate(), 11, 0),
         },
         {
           id: 2,
@@ -179,8 +104,8 @@ export default {
           title: 'Título 2',
           author: 'Josh Laudrup',
           avatar: 'https://randomuser.me/api/portraits/lego/4.jpg',
-          start: 'Sun Mar 28 2021 08:00:31 GMT+0200',
-          end: 'Sun Mar 28 2021 09:00:31 GMT+0200',
+          start: new Date(2021, now.getMonth(), now.getDate(), 10, 0),
+          end: new Date(2021, now.getMonth(), now.getDate(), 11, 0),
         },
         {
           id: 3,
@@ -188,8 +113,8 @@ export default {
           title: 'Título 3',
           author: 'Tom Berenger',
           avatar: 'https://randomuser.me/api/portraits/lego/3.jpg',
-          start: 'Sun Mar 28 2021 09:00:31 GMT+0200',
-          end: 'Sun Mar 28 2021 10:00:31 GMT+0200',
+          start: new Date(2021, now.getMonth(), now.getDate(), 13, 0),
+          end: new Date(2021, now.getMonth(), now.getDate(), 14, 0),
         },
         {
           id: 4,
@@ -197,8 +122,8 @@ export default {
           title: 'Equipos y Psicología',
           author: 'Benito Floro',
           avatar: 'https://randomuser.me/api/portraits/lego/6.jpg',
-          start: 'Sun Mar 28 2021 10:00:31 GMT+0200',
-          end: 'Sun Mar 28 2021 11:00:31 GMT+0200',
+          start: new Date(2021, now.getMonth(), now.getDate(), 17, 0),
+          end: new Date(2021, now.getMonth(), now.getDate(), 18, 0),
         },
         {
           id: 5,
@@ -206,35 +131,35 @@ export default {
           title: 'Conspiraciones de conscursantes',
           author: 'Jordi Hurtado',
           avatar: 'https://randomuser.me/api/portraits/lego/1.jpg',
-          start: 'Sun Mar 28 2021 18:00:31 GMT+0200',
-          end: 'Sun Mar 28 2021 19:00:31 GMT+0200',
+          start: new Date(2021, now.getMonth(), now.getDate(), 17, 0),
+          end: new Date(2021, now.getMonth(), now.getDate(), 18, 0),
         },
         {
-          id: 5,
+          id: 6,
           catId: 1,
           title: 'España - Georgia',
           author: 'Tomas Guasch',
           avatar: 'https://randomuser.me/api/portraits/lego/3.jpg',
-          start: 'Mon Mar 29 2021 18:00:31 GMT+0200',
-          end: 'Mon Mar 29 2021 19:00:31 GMT+0200',
+          start: new Date(2021, now.getMonth(), now.getDate(), 17, 0),
+          end: new Date(2021, now.getMonth(), now.getDate(), 18, 0),
         },
         {
-          id: 4,
+          id: 7,
           catId: 1,
           title: 'Equipos y Psicología',
           author: 'Benito Floro',
           avatar: 'https://randomuser.me/api/portraits/lego/6.jpg',
-          start: 'Tue Mar 30 2021 10:00:31 GMT+0200',
-          end: 'Tue Mar 30 2021 11:00:31 GMT+0200',
+          start: new Date(2021, now.getMonth(), now.getDate() + 1, 16, 0),
+          end: new Date(2021, now.getMonth(), now.getDate() + 1, 17, 0),
         },
         {
-          id: 5,
+          id: 8,
           catId: 1,
-          title: 'Conspiraciones de conscursantes',
+          title: 'Ganar y Saber',
           author: 'Jordi Hurtado',
           avatar: 'https://randomuser.me/api/portraits/lego/1.jpg',
-          start: 'Tue Mar 30 2021 17:00:31 GMT+0200',
-          end: 'Tue Mar 30 2021 18:15:31 GMT+0200',
+          start: new Date(2021, now.getMonth(), now.getDate() + 1, 17, 0),
+          end: new Date(2021, now.getMonth(), now.getDate() + 1, 18, 0),
         },
       ],
     }

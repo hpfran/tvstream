@@ -25,12 +25,15 @@
               :class="[
                 `slot-${h}`,
                 {
-                  disabled: moment(hoy).isAfter(
-                    moment(
-                      evento.dia + ' ' + hora.format('HH:mm'),
-                      'YYYY-MM-DD HH:mm'
-                    )
-                  ),
+                  active: hora.format('HH') === ahora.toString(),
+                  disabled:
+                    hora.format('HH') !== ahora.toString() &&
+                    moment(hoy).isAfter(
+                      moment(
+                        evento.dia + ' ' + hora.format('HH:mm'),
+                        'YYYY-MM-DD HH:mm'
+                      )
+                    ),
                 },
               ]"
             >
@@ -110,10 +113,10 @@ export default {
         {
           id: 3,
           catId: 1,
-          title: 'Título 3',
+          title: 'Videojuegos y comentarios',
           author: 'Tom Berenger',
           avatar: 'https://randomuser.me/api/portraits/lego/3.jpg',
-          start: new Date(2021, now.getMonth(), now.getDate(), 13, 0),
+          start: new Date(2021, now.getMonth(), now.getDate(), 12, 0),
           end: new Date(2021, now.getMonth(), now.getDate(), 14, 0),
         },
         {
@@ -167,7 +170,6 @@ export default {
   computed: {
     ahora() {
       const h = new Date().getHours()
-      // this.scrollTo('.slot-' + h)
       return h
     },
     eventosByDay() {

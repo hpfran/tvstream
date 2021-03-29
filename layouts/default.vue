@@ -174,6 +174,12 @@ html {
       opacity: 0.5;
     }
   }
+  &.active {
+    background: rgba(252, 216, 252, 0.5);
+    & .time-slot {
+      color: var(--main-color);
+    }
+  }
 }
 
 .guide-slot_card {
@@ -232,7 +238,7 @@ html {
 @media only screen and (min-width: 600px) {
   .schedule-stage__title {
     padding-left: 1rem;
-    background: linear-gradient(to right, #efefef 5%, rgba(0, 0, 0, 0));
+    background: linear-gradient(90deg, #efefef 0%, rgba(0, 0, 0, 0) 25%);
   }
 }
 
